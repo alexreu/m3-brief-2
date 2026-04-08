@@ -25,3 +25,16 @@ def get_loan_information(loan_information_id: int, db: Session = Depends(get_db)
             status_code=404, detail="Loan information not found")
 
     return loan_information
+
+
+@router.delete("/{loan_information_id}", status_code=204, summary="Delete a loan information")
+def delete_loan_information(loan_information_id: int, db: Session = Depends(get_db)):
+    loan_information = db.query(LoanInformation).filter(
+        LoanInformation.id == loan_information_id).first()
+
+    if not loan_information:
+        raise HTTPException(
+            status_code=404, detail="Loan information not found")
+
+    db.delete(loan_information)
+    db.commit()

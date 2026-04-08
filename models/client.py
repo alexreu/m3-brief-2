@@ -26,7 +26,7 @@ class Client(Base):
     created_at = Column(Date)
 
     loan_informations = relationship(
-        "LoanInformation", back_populates="client")
+        "LoanInformation", back_populates="client", cascade="all, delete")
 
     def __repr__(self):
         return f"<Client(id={self.id}, first_name='{self.first_name}', last_name='{self.last_name}')>"

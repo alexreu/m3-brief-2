@@ -65,4 +65,18 @@ def create_client(payload: ClientCreateWithLoanInformations, db: Session = Depen
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Database error: " + str(e))
 
-    return db_client
+
+@router.delete("/{client_id}", status_code=204, summary="Delete a client")
+def delete_client(client_id: int, db: Session = Depends(get_db)):
+    client = db.query(Client).filter(Client.id == client_id).first()
+
+    if not client:
+        raise HTTPException(status_code=404, detail="Client not found")
+
+    try:
+        db.delete(client)
+        db.commit()
+    except SQLAlchemyError as e:
+        db.rollback()
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Database error: " + str(e))
