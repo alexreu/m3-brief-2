@@ -29,7 +29,6 @@ def train_model(
     y_val=None,
     epochs: int = 50,
     batch_size: int = 32,
-    verbose: int = 1,
     callbacks=None,
 ):
     history = model.fit(
@@ -39,7 +38,7 @@ def train_model(
             X_val, y_val) if X_val is not None and y_val is not None else None,
         epochs=epochs,
         batch_size=batch_size,
-        verbose=verbose,
+        verbose=1,
         callbacks=callbacks,
     )
     return model, history
