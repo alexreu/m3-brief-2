@@ -287,10 +287,6 @@ Important : `train_loss` et `val_loss` sont désormais calculées dans l'espace 
 
 ![Predictions vs actuals](artifacts/predictions_vs_actuals.png)
 
-### pgAdmin
-
-![pgAdmin](artifacts/pgadmin.png)
-
 ## Remarques
 
 - `date_of_birth` est laissé vide lors de l'import du CSV brut
