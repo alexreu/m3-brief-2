@@ -1,0 +1,66 @@
+{
+  "age": {
+    "q1": 32.0,
+    "q3": 61.0,
+    "iqr": 29.0,
+    "lower_bound": -11.5,
+    "upper_bound": 104.5,
+    "outlier_count": 0
+  },
+  "estimated_monthly_income": {
+    "q1": 1674.0,
+    "q3": 3291.0,
+    "iqr": 1617.0,
+    "lower_bound": -751.5,
+    "upper_bound": 5716.5,
+    "outlier_count": 41
+  },
+  "credit_history_count": {
+    "q1": 2.0,
+    "q3": 3.0,
+    "iqr": 1.0,
+    "lower_bound": 0.5,
+    "upper_bound": 4.5,
+    "outlier_count": 2580
+  },
+  "personal_risk_score": {
+    "q1": 0.25,
+    "q3": 0.76,
+    "iqr": 0.51,
+    "lower_bound": -0.515,
+    "upper_bound": 1.525,
+    "outlier_count": 0
+  },
+  "credit_score": {
+    "q1": 549.0,
+    "q3": 600.0,
+    "iqr": 51.0,
+    "lower_bound": 472.5,
+    "upper_bound": 676.5,
+    "outlier_count": 5000
+  },
+  "monthly_rent": {
+    "q1": 1532.39,
+    "q3": 10000.0,
+    "iqr": 8467.61,
+    "lower_bound": -11169.025000000001,
+    "upper_bound": 22701.415,
+    "outlier_count": 0
+  },
+  "caf_quotient": {
+    "q1": 216.2,
+    "q3": 283.4,
+    "iqr": 67.19999999999999,
+    "lower_bound": 115.4,
+    "upper_bound": 384.19999999999993,
+    "outlier_count": 1790
+  },
+  "loan_amount": {
+    "q1": 500.0,
+    "q3": 13779.98218862755,
+    "iqr": 13279.98218862755,
+    "lower_bound": -19419.973282941326,
+    "upper_bound": 33699.95547156887,
+    "outlier_count": 506
+  }
+}

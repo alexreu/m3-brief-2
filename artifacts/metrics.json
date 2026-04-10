@@ -1,6 +1,9 @@
 {
-  "train_loss": 35271868.0,
-  "val_loss": 37457584.0,
-  "test_loss": 38544268.0,
-  "test_mae": 3987.509033203125
+  "train_loss": 2.6409549713134766,
+  "val_loss": 2.7058091163635254,
+  "test_loss": 131822422.41418736,
+  "test_mae": 7169.412390309361,
+  "prediction_count": 2209,
+  "target_transform": "log1p",
+  "imputer": "KNNImputer(n_neighbors=5, weights='distance')"
 }

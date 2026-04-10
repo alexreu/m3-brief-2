@@ -23,6 +23,10 @@ class Client(Base):
     is_french_national = Column(Boolean)
     family_status = Column(
         Enum('marié', 'célibataire', 'divorcé', 'veuf', name="family_status_enum"))
+    sexual_orientation = Column(
+        Enum('het', 'hom', name="sexual_orientation_enum"))
+    caf_quotient = Column(Numeric)
+    child_count = Column(Integer)
     created_at = Column(Date)
 
     loan_informations = relationship(

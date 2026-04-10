@@ -1,44 +1,21 @@
+import numpy as np
 from sklearn.compose import ColumnTransformer
-from sklearn.impute import SimpleImputer
+from sklearn.impute import KNNImputer
 from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import OneHotEncoder, StandardScaler
+from sklearn.preprocessing import StandardScaler
 
 
 TARGET_COLUMN = "loan_amount"
 
-NUMERICAL_COLS = [
+ETHICAL_FEATURE_COLUMNS = [
     "age",
-    "height_cm",
-    "weight_kg",
     "estimated_monthly_income",
     "credit_history_count",
     "personal_risk_score",
     "credit_score",
     "monthly_rent",
-]
-
-CATEGORICAL_COLS = [
-    "sex",
-    "education_level",
-    "region",
-    "family_status",
-]
-
-BOOLEAN_COLS = [
-    "has_sport_license",
-    "is_smoker",
-    "is_french_national",
-]
-
-DROP_COLS = [
-    "id",
-    "client_id",
-    "first_name",
-    "last_name",
-    "date_of_birth",
-    "created_at",
-    "account_created_at",
+    "caf_quotient",
 ]
 
 
@@ -51,24 +28,21 @@ def split(X, y, test_size=0.2, random_state=42):
 
 def build_preprocessor():
     num_pipeline = Pipeline([
-        ("imputer", SimpleImputer(strategy="median")),
+        ("imputer", KNNImputer(n_neighbors=5, weights="distance")),
         ("scaler", StandardScaler()),
     ])
 
-    cat_pipeline = Pipeline([
-        ("imputer", SimpleImputer(strategy="most_frequent")),
-        ("encoder", OneHotEncoder(handle_unknown="ignore", sparse_output=False)),
-    ])
-
     return ColumnTransformer([
-        ("num", num_pipeline, NUMERICAL_COLS),
-        ("cat", cat_pipeline, CATEGORICAL_COLS),
-        ("bool", "passthrough", BOOLEAN_COLS),
+        ("num", num_pipeline, ETHICAL_FEATURE_COLUMNS),
     ])
 
 
 def prepare_features_and_target(df):
-    X = df.drop(columns=DROP_COLS + [TARGET_COLUMN], errors="ignore")
-    y = df[TARGET_COLUMN]
+    X = df[ETHICAL_FEATURE_COLUMNS].copy()
+    y = np.log1p(df[TARGET_COLUMN])
     preprocessor = build_preprocessor()
     return X, y, preprocessor
+
+
+def inverse_target_transform(values):
+    return np.expm1(values)
